@@ -1,2 +1,3 @@
 .DS_Store
 reverse_proxy/certs/*
+reverse_proxy_hp/certs/*
