@@ -46,7 +46,7 @@ ro_redis = os.getenv('REIDS_RO', 'redis')
 rw_redis = os.getenv('REDIS_RW', 'redis')
 
 application = tornado.web.Application([
-    (r"/token/([0-9a-fA-F]{32})", AuthHandler, dict(roDB=ro_redis, rwDB=rw_redis)),
+    (r"/token/([0-9a-zA-Z]{32})", AuthHandler, dict(roDB=ro_redis, rwDB=rw_redis)),
 ])
 
 if __name__ == "__main__":
