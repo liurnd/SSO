@@ -8,13 +8,14 @@ class AuthHandler(tornado.web.RequestHandler):
     def initialize(self, roDB, rwDB):
         self.roConn = redis.StrictRedis(host=roDB, port=6379, db=0)
         self.rwConn = redis.StrictRedis(host=rwDB, port=6379, db=0)
-    def getServerType(self):
-        pass
+    def delete(self, tokenID):
+        self.rwConn.delete(tokenID)
+        self.write({'status':True})
     def get(self, tokenID):
         res = self.roConn.get(tokenID)
         if (res == None):
             self.set_status(404)
-            self.write({'status', False})
+            self.write({'status': False})
         else:
             try:
                 t = json.loads(res)
